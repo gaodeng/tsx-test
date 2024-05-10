@@ -33,9 +33,7 @@ jobs:
       - name: Install and build
         working-directory: tsx-test
         run: |
-          dir node_modules
-          dir node_modules\.bin
-          npm install
+          npm install --force
           npm run build1
           npm run build2
 

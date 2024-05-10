@@ -35,4 +35,5 @@ jobs:
         run: |
           npm install
           npm run build1
+          npm run build2
 

@@ -1,0 +1,38 @@
+name: Publish
+
+on: push:
+
+
+jobs:
+  publish:
+    # To enable auto publishing to github, update your electron publisher
+    # config in package.json > "build" and remove the conditional below
+    # if: ${{ github.repository_owner == 'electron-react-boilerplate' }}
+
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [windows-latest]
+
+    steps:
+      - name: Checkout tsx-test
+        uses: actions/checkout@v3
+        with:
+          path: tsx-test
+
+
+
+      - name: Install Node and NPM
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: npm
+          cache-dependency-path: tsx-test/package-lock.json
+
+      - name: Install and build
+        working-directory: tsx-test
+        run: |
+          npm install
+          npm run build
+
